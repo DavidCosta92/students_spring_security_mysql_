@@ -1,0 +1,53 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alumno</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+
+
+<div class="alert alert-danger" role="alert" th:if="${error != null}">
+    <h5 th:text="${error}" ></h5>
+</div>
+<div class="alert alert-primary" role="alert" th:if="${exito != null}">
+    <h5 th:text="${exito}" ></h5>
+</div>
+
+<h4 class="text-center m-5">Detalles de alumno</h4>
+<div class="d-flex justify-content-around m-5">
+    <div class="container border border-info m-2 p-2  w-25">
+        <p>Nombre: <span th:text="${student.name}"></span> </p>
+        <p>Apellido: <span th:text="${student.surname}"></span> </p>
+        <p>Edad: <span th:text="${student.age}"></span> </p>
+        <p>Fecha nacimiento: <span th:text="${student.birthday}"></span> </p>
+    </div>
+
+    <div class="container border border-info m-2 p-2">
+        <form th:action="@{/studentDetails/} + ${student.id}"  method="POST" class="m-5">
+            <h3>Formulario para EDITAR ALUMNO</h3>
+            <label for="name" class="form-label p-1 w-50">Nombre</label>
+            <input type="text" class="form-control 1 w-75" id="name" name="name" aria-describedby="name"  th:value="${student.name}">
+
+            <label for="surname" class="form-label p-1 w-50">Apellido</label>
+            <input type="text" class="form-control 1 w-75" id="surname" name="surname" aria-describedby="surname" th:value="${student.surname}">
+
+            <label for="age" class="form-label p-1 w-50">Edad</label>
+            <input type="number" class="form-control 1 w-75" id="age" name="age" aria-describedby="age" th:value="${student.age}">
+
+            <label class="form-label p-1 w-50" for="birthday">Fecha de nacimiento</label>
+            <input  class="form-control  w-75"  type="date" id="birthday" name="birthday" th:value="${student.birthday}">
+
+            <button type="submit" class="btn btn-success mt-2">ACTUALIZAR datos alumno</button>
+        </form>
+
+        <a href="/"><button type="button" class="btn btn-primary  m-1 ml-5">Ir a inicio</button></a>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
