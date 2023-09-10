@@ -13,6 +13,18 @@
     <div class="alert alert-primary" role="alert" th:if="${exito != null}">
         <h5 th:text="${exito}" ></h5>
     </div>
+    <div>
+        <h3>student List</h3>
+        <table>
+            <tr>
+              <th>Nombre </th>
+            </tr>
+            <tr th:each="student : ${studentList}">
+              <td th:text="${student.name}"></td>
+            </tr>
+        </table>
+        
+    </div>
 
     <form action="/"  method="POST" class="m-5">
         <h3>Formulario para agregar alumnos</h3>
