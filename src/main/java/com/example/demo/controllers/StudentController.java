@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.auth.AuthService;
 import com.example.demo.entities.Student;
 import com.example.demo.services.StudentService;
 
@@ -18,9 +19,13 @@ import java.util.List;
 public class StudentController {
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private AuthService authService;
 
     @GetMapping("/")
     public String renderStudentList(Model model) {
+        String loguedUser = authService.getCurrentSession().toString();
+        model.addAttribute("loguedUser", loguedUser);
         model.addAttribute("studentList", studentService.getStudentList());
         return "students.html";
     }
